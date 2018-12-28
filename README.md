@@ -4,7 +4,7 @@ Simple cross-platform (Windows/Linux) Python3 module for displaying desktop noti
 
 ### Installation
 ```bash
-$ pip install pynotifier
+$ pip install py-notifier
 ```
 
 ### Requirements
