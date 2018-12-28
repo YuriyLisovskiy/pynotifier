@@ -1,0 +1,1 @@
+from .pynotifier import Notification
