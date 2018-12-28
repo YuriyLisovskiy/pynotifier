@@ -7,7 +7,7 @@ import platform
 
 from setuptools import find_packages, setup
 
-NAME = 'pynotifier'
+NAME = 'py-notifier'
 DESCRIPTION = 'Cross-platform desktop push-notifications.'
 URL = 'https://github.com/YuriyLisovskiy/pynotifier'
 EMAIL = 'yuralisovskiy98@gmail.com'
