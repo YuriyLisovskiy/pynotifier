@@ -62,8 +62,8 @@ class Notification:
 	def __send_linux(self):
 		import subprocess
 		command = [
-			'notify-send', '"{}"'.format(self.__title),
-			'"{}"'.format(self.__description),
+			'notify-send', '{}'.format(self.__title),
+			'{}'.format(self.__description),
 			'-u', self.__urgency,
 			'-t', '{}'.format(self.__duration * 1000)
 		]
