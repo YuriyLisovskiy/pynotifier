@@ -15,10 +15,7 @@ AUTHOR = 'Yuriy Lisovskiy'
 REQUIRES_PYTHON = '>=3.6.0'
 VERSION = '0.1.0'
 
-REQUIRED = []
-
-if 'Windows' in platform.system():
-	REQUIRED.append('win10toast')
+REQUIRED = ["win10toast; platform_system=='Windows'"]
 
 here = os.path.abspath(os.path.dirname(__file__))
 
