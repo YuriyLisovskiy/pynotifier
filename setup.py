@@ -3,7 +3,6 @@
 
 import io
 import os
-import platform
 
 from setuptools import find_packages, setup
 
@@ -13,9 +12,9 @@ URL = 'https://github.com/YuriyLisovskiy/pynotifier'
 EMAIL = 'yuralisovskiy98@gmail.com'
 AUTHOR = 'Yuriy Lisovskiy'
 REQUIRES_PYTHON = '>=3.6.0'
-VERSION = '0.1.0'
+VERSION = '0.1.1'
 
-REQUIRED = ["win10toast; platform_system=='Windows'"]
+REQUIRED = ["win10toast==0.9; platform_system=='Windows'"]
 
 here = os.path.abspath(os.path.dirname(__file__))
 
