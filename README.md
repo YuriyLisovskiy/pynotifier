@@ -34,4 +34,4 @@ Notification(
 * [Yuriy Lisovskiy](https://github.com/YuriyLisovskiy)
 
 ### License
-The project is licensed under the terms of the [GNU General Public License v3.0](https://opensource.org/licenses/GPL-3.0), see the [LICENSE](LICENSE) file for more information.
+The project is licensed under the terms of the [MIT License](https://opensource.org/licenses/mit), see the [LICENSE](LICENSE) file for more information.
