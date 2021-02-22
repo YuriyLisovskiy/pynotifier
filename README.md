@@ -8,7 +8,13 @@ $ pip install py-notifier
 ```
 
 ### Requirements
-If running on Windows: `win10toast`
+#### Windows:
+`win10toast` - Python library (will be installed automatically)
+#### Linux:
+`libnotify-bin` CLI tool (manual installation is required). For Ubuntu run:
+```bash
+sudo apt-get install libnotify-bin
+```
 
 ### Example
 ```python
