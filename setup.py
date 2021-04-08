@@ -6,13 +6,14 @@ import os
 
 from setuptools import find_packages, setup
 
+
 NAME = 'py-notifier'
 DESCRIPTION = 'Cross-platform desktop push-notifications.'
 URL = 'https://github.com/YuriyLisovskiy/pynotifier'
 EMAIL = 'yuralisovskiy98@gmail.com'
 AUTHOR = 'Yuriy Lisovskiy'
 REQUIRES_PYTHON = '>=3.6.0'
-VERSION = '0.1.1'
+VERSION = (0, 1, 2)
 
 REQUIRED = ["win10toast==0.9; platform_system=='Windows'"]
 
@@ -24,17 +25,9 @@ try:
 except FileNotFoundError:
 	long_description = DESCRIPTION
 
-about = {}
-if not VERSION:
-	with open(os.path.join(here, NAME, '__version__.py')) as f:
-		exec(f.read(), about)
-else:
-	about['__version__'] = VERSION
-
-
 setup(
 	name=NAME,
-	version=about['__version__'],
+	version='.'.join(map(str, VERSION)),
 	description=DESCRIPTION,
 	long_description=long_description,
 	long_description_content_type='text/markdown',

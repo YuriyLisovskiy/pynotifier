@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 # PyNotifier
 # Copyright (c) 2018 Yuriy Lisovskiy
 #
@@ -36,9 +33,16 @@ class Notification:
 	# 'duration' - notification timeout in seconds
 	# 'urgency' - notification urgency level
 	# 'icon_path' - path to notification icon file
-	def __init__(self, title, description, duration=5, urgency=URGENCY_LOW, icon_path=None):
+	def __init__(self, title, description='', duration=5, urgency=URGENCY_LOW, icon_path=None):
 		if urgency not in [self.URGENCY_LOW, self.URGENCY_NORMAL, self.URGENCY_CRITICAL]:
 			raise ValueError('invalid urgency was given: {}'.format(urgency))
+
+		if title is None:
+			raise ValueError('title with None value is not allowed')
+
+		if title == '':
+			raise ValueError('title must not be empty')
+
 		self.__WINDOWS = 'Windows'
 		self.__LINUX = 'Linux'
 		self.__title = title
