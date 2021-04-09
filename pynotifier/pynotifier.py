@@ -1,5 +1,5 @@
-# PyNotifier
-# Copyright (c) 2018 Yuriy Lisovskiy
+# py-notifier
+# Copyright (c) 2018, 2021 Yuriy Lisovskiy
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -23,59 +23,57 @@ import platform
 # class to run notification
 class Notification:
 
-	# urgency level
-	URGENCY_LOW = 'low'
-	URGENCY_NORMAL = 'normal'
-	URGENCY_CRITICAL = 'critical'
-
-	# 'title' - a title of notification
-	# 'description' - more info about the notification
-	# 'duration' - notification timeout in seconds
-	# 'urgency' - notification urgency level
-	# 'icon_path' - path to notification icon file
-	def __init__(self, title, description='', duration=5, urgency=URGENCY_LOW, icon_path=None):
-		if urgency not in [self.URGENCY_LOW, self.URGENCY_NORMAL, self.URGENCY_CRITICAL]:
-			raise ValueError('invalid urgency was given: {}'.format(urgency))
-
+	# 'title' - a title of notification.
+	# 'description' - more info about the notification.
+	# 'duration' - notification timeout in seconds.
+	# 'urgency' - notification urgency level (ignored under Windows);
+	#             possible values: 'low', 'normal', 'critical'.
+	# 'icon_path' - path to notification icon file.
+	def __init__(self, title, description='', duration=5, urgency='low', icon_path=None):
 		if title is None:
 			raise ValueError('title with None value is not allowed')
 
 		if title == '':
 			raise ValueError('title must not be empty')
 
-		self.__WINDOWS = 'Windows'
-		self.__LINUX = 'Linux'
+		system = platform.system().lower()
+		if 'windows' in system:
+			self.__sender = self.__send_windows
+		elif 'linux' in system:
+			if urgency not in ['low', 'normal', 'critical', None]:
+				raise ValueError('invalid urgency was given: {}'.format(urgency))
+
+			self.__sender = self.__send_linux
+		else:
+			raise SystemError('notifications are not supported for {} system'.format(system))
+
 		self.__title = title
 		self.__description = description
 		self.__duration = duration
 		self.__urgency = urgency
 		self.__icon_path = icon_path
-		self.__is_windows = False
 
-	# 'send' - sends notification depending on system
+	# sends notification using '__sender'
 	def send(self):
-		system = platform.system()
-		if self.__LINUX in system:
-			self.__send_linux()
-		elif self.__WINDOWS in system:
-			self.__send_windows()
-		else:
-			raise SystemError('notifications are not supported for {} system'.format(system))
+		self.__sender()
 
-	# '__send_linux' - sends notification if running on Linux system
+	# sends notification if running on Linux system
 	def __send_linux(self):
 		import subprocess
 		command = [
 			'notify-send', '{}'.format(self.__title),
 			'{}'.format(self.__description),
-			'-u', self.__urgency,
 			'-t', '{}'.format(self.__duration * 1000)
 		]
+		if self.__urgency is not None:
+			command += ['-u', self.__urgency]
+
 		if self.__icon_path is not None:
 			command += ['-i', self.__icon_path]
+
 		subprocess.call(command)
 
-	# '__send_windows' - sends notification if running on Windows system
+	# sends notification if running on Windows system
 	def __send_windows(self):
 		try:
 			import win10toast

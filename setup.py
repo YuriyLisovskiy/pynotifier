@@ -13,7 +13,7 @@ URL = 'https://github.com/YuriyLisovskiy/pynotifier'
 EMAIL = 'yuralisovskiy98@gmail.com'
 AUTHOR = 'Yuriy Lisovskiy'
 REQUIRES_PYTHON = '>=3.6.0'
-VERSION = (0, 1, 3)
+VERSION = (0, 2, 0)
 
 REQUIRED = ["win10toast==0.9; platform_system=='Windows'"]
 
