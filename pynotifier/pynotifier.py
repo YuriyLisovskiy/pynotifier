@@ -16,19 +16,19 @@
 
 __all__ = ['Notification']
 
-# standard library
 import platform
+import shutil
+import subprocess
 
-
-# class to run notification
 class Notification:
-
-	# 'title' - a title of notification.
-	# 'description' - more info about the notification.
-	# 'duration' - notification timeout in seconds.
-	# 'urgency' - notification urgency level (ignored under Windows);
-	#             possible values: 'low', 'normal', 'critical'.
-	# 'icon_path' - path to notification icon file.
+	"""
+	'title' - a title of notification.
+	'description' - more info about the notification.
+	'duration' - notification timeout in seconds.
+	'urgency' - notification urgency level (ignored under Windows);
+	            possible values: 'low', 'normal', 'critical'.
+	'icon_path' - path to notification icon file.
+	"""
 	def __init__(self, title, description='', duration=5, urgency='low', icon_path=None):
 		if title is None:
 			raise ValueError('title with None value is not allowed')
@@ -37,29 +37,30 @@ class Notification:
 			raise ValueError('title must not be empty')
 
 		system = platform.system().lower()
-		if 'windows' in system:
-			self.__sender = self.__send_windows
-		elif 'linux' in system:
-			if urgency not in ['low', 'normal', 'critical', None]:
-				raise ValueError('invalid urgency was given: {}'.format(urgency))
 
-			self.__sender = self.__send_linux
-		else:
+		platforms = ['windows', 'linux', 'darwin']
+		if system not in platforms:
 			raise SystemError('notifications are not supported for {} system'.format(system))
 
+		if system == 'linux' and urgency not in ['low', 'normal', 'critical', None]:
+			raise ValueError('invalid urgency was given: {}'.format(urgency))
+
+		self.system = system
 		self.__title = title
 		self.__description = description
 		self.__duration = duration
 		self.__urgency = urgency
 		self.__icon_path = icon_path
 
-	# sends notification using '__sender'
 	def send(self):
-		self.__sender()
+		# https://stackoverflow.com/questions/3951840/how-to-invoke-a-function-on-an-object-dynamically-by-name
+		getattr(self, f'send_{self.system}')()
 
-	# sends notification if running on Linux system
-	def __send_linux(self):
-		import subprocess
+	def send_linux(self):
+		"""Notify on linux with notify-send"""
+		if shutil.which('notify-send') is None:
+			raise SystemError('Please install libnotify-bin\n\tsudo apt-get install libnotify-bin')
+
 		command = [
 			'notify-send', '{}'.format(self.__title),
 			'{}'.format(self.__description),
@@ -73,8 +74,8 @@ class Notification:
 
 		subprocess.call(command)
 
-	# sends notification if running on Windows system
-	def __send_windows(self):
+	def send_windows(self):
+		"""Notify on windows with win10toast"""
 		try:
 			import win10toast
 			win10toast.ToastNotifier().show_toast(
@@ -85,4 +86,12 @@ class Notification:
 				icon_path=self.__icon_path
 			)
 		except ImportError:
-			raise ImportError('notifications are not supported, can\'t import necessary library')
+			raise ImportError('notifications are not supported, can\'t import win10toast')
+
+	def send_darwin(self):
+		"""Notify on macos with pync"""
+		try:
+			import pync
+			pync.notify(self.__description, title=self.__title, appIcon=self.__icon_path)
+		except ImportError:
+			raise ImportError('notifications are not supported, can\'t import pync')

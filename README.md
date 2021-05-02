@@ -1,6 +1,6 @@
 ## Desktop Notifications
 
-Simple Python3 module for displaying desktop notifications on Windows and Linux.
+Simple Python3 module for displaying desktop notifications on Windows, Linux and MacOS.
 
 ### Installation
 ```bash
@@ -10,17 +10,17 @@ $ pip install py-notifier
 ### Requirements
 #### Windows:
 [`win10toast`](https://github.com/jithurjacob/Windows-10-Toast-Notifications) - Python library
-(will be installed automatically)
 #### Linux:
 `libnotify-bin` CLI tool (manual installation is required). For Ubuntu run:
 ```bash
 sudo apt-get install libnotify-bin
 ```
+#### MacOs:
+[`pync`](https://github.com/SeTeM/pync)
 
 ### Example
 ```python
 from pynotifier import Notification
-
 
 Notification(
 	title='Notification Title',
