@@ -44,11 +44,12 @@ setup(
 	license='MIT',
 	classifiers=[
 		# Full list: https://pypi.org/classifiers
-		'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
+		'License :: OSI Approved :: MIT License',
 		'Programming Language :: Python',
 		'Programming Language :: Python :: 3',
 		'Programming Language :: Python :: 3.6',
 		'Environment :: MacOS X',
+		'Operating System :: MacOS',
 		'Operating System :: POSIX :: Linux',
 		'Operating System :: Microsoft :: Windows :: Windows 10'
 	]
