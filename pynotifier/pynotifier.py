@@ -1,18 +1,8 @@
 # py-notifier
 # Copyright (c) 2018, 2021 Yuriy Lisovskiy
 #
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# Distributed under the MIT licence,
+# see the accompanying file LICENSE.
 
 __all__ = ['Notification']
 
@@ -20,13 +10,14 @@ import platform
 import shutil
 import subprocess
 
+
 class Notification:
 	"""
 	'title' - a title of notification.
 	'description' - more info about the notification.
 	'duration' - notification timeout in seconds.
 	'urgency' - notification urgency level (ignored under Windows);
-	            possible values: 'low', 'normal', 'critical'.
+				possible values: 'low', 'normal', 'critical'.
 	'icon_path' - path to notification icon file.
 	"""
 	def __init__(self, title, description='', duration=5, urgency='low', icon_path=None):

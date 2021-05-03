@@ -13,7 +13,7 @@ URL = 'https://github.com/YuriyLisovskiy/pynotifier'
 EMAIL = 'yuralisovskiy98@gmail.com'
 AUTHOR = 'Yuriy Lisovskiy'
 REQUIRES_PYTHON = '>=3.6.0'
-VERSION = (0, 2, 0)
+VERSION = (0, 3, 0)
 
 REQUIRED = [
 	"win10toast==0.9; platform_system=='Windows'",
@@ -41,13 +41,14 @@ setup(
 	packages=find_packages(exclude=('tests',)),
 	install_requires=REQUIRED,
 	include_package_data=True,
-	license='GPLv3',
+	license='MIT',
 	classifiers=[
-		# Full list: https://pypi.python.org/pypi?%3Aaction=list_classifiers
+		# Full list: https://pypi.org/classifiers
 		'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
 		'Programming Language :: Python',
 		'Programming Language :: Python :: 3',
 		'Programming Language :: Python :: 3.6',
+		'Environment :: MacOS X',
 		'Operating System :: POSIX :: Linux',
 		'Operating System :: Microsoft :: Windows :: Windows 10'
 	]

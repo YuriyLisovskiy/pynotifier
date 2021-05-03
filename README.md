@@ -9,14 +9,14 @@ $ pip install py-notifier
 
 ### Requirements
 #### Windows:
-[`win10toast`](https://github.com/jithurjacob/Windows-10-Toast-Notifications) - Python library
+[`win10toast`](https://github.com/jithurjacob/Windows-10-Toast-Notifications) - Python module
 #### Linux:
 `libnotify-bin` CLI tool (manual installation is required). For Ubuntu run:
 ```bash
 sudo apt-get install libnotify-bin
 ```
-#### MacOs:
-[`pync`](https://github.com/SeTeM/pync)
+#### MacOS:
+[`pync`](https://github.com/SeTeM/pync) - Python module
 
 ### Example
 ```python
