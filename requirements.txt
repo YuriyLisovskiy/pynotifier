@@ -1,1 +1,2 @@
 win10toast==0.9; platform_system=='Windows'
+pync==2.0.3; platform_system=='Darwin'
