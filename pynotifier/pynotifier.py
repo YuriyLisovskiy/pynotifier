@@ -1,10 +1,11 @@
-# py-notifier
-# Copyright (c) 2018, 2021 Yuriy Lisovskiy
-#
-# Distributed under the MIT licence,
-# see the accompanying file LICENSE.
+"""
+py-notifier: Display desktop notifications on Windows, Linux and MacOS.
 
-__all__ = ["Notification"]
+Copyright (c) 2018, 2021 Yuriy Lisovskiy
+
+Distributed under the MIT licence,
+see the accompanying file LICENSE.
+"""
 
 import platform
 import shutil
@@ -12,15 +13,7 @@ import subprocess
 
 
 class Notification:
-    """
-    'app_name' - name of app sending notification (for linux only)
-    'title' - a title of notification.
-    'description' - more info about the notification.
-    'duration' - notification timeout in seconds.
-    'urgency' - notification urgency level (ignored under Windows);
-                            possible values: 'low', 'normal', 'critical'.
-    'icon_path' - path to notification icon file.
-    """
+    """Display desktop notifications on Windows, Linux and MacOS."""
 
     def __init__(
         self,
@@ -31,6 +24,17 @@ class Notification:
         icon_path=None,
         app_name=None,
     ):
+        """
+        Construct with notification properties.
+
+        'title' - a title of notification.
+        'description' - more info about the notification.
+        'duration' - notification timeout in seconds.
+        'urgency' - notification urgency level (ignored under Windows);
+                                possible values: 'low', 'normal', 'critical'.
+        'icon_path' - path to notification icon file.
+        'app_name' - name of app sending notification (Linux only).
+        """
         if title is None:
             raise ValueError("title with None value is not allowed")
 
@@ -57,11 +61,12 @@ class Notification:
         self.__app_name = app_name
 
     def send(self):
+        """Send the notification."""
         # https://stackoverflow.com/questions/3951840/how-to-invoke-a-function-on-an-object-dynamically-by-name
         getattr(self, f"send_{self.system}")()
 
     def send_linux(self):
-        """Notify on linux with notify-send"""
+        """Notify on linux with notify-send."""
         if shutil.which("notify-send") is None:
             raise SystemError(
                 "Please install libnotify-bin\n\tsudo apt-get install libnotify-bin"
@@ -86,7 +91,7 @@ class Notification:
         subprocess.call(command)
 
     def send_windows(self):
-        """Notify on windows with win10toast"""
+        """Notify on windows with win10toast."""
         try:
             import win10toast
 
@@ -103,7 +108,7 @@ class Notification:
             )
 
     def send_darwin(self):
-        """Notify on macos with pync"""
+        """Notify on macos with pync."""
         try:
             import pync
 

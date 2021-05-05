@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+"""Display desktop notifications on Windows, Linux and MacOS."""
 
 import io
 import os
