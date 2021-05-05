@@ -31,6 +31,17 @@ Notification(
 ).send()
 ```
 
+### Development
+
+```bash
+$ make
+ci               Lint and Test
+clean            Remove Python file artifacts and virtualenv
+lint             Lint source
+test             Run tests
+venv             Creates the virtualenv and installs tox
+```
+
 ### Author
 * [Yuriy Lisovskiy](https://github.com/YuriyLisovskiy)
 
