@@ -16,7 +16,6 @@ jobs:
           python-version: "3.6"
       - name: "Pre-commit linting"
         run: |
-          set -xe
           python -VV
           python -m site
           python -m pip install --upgrade pip tox
@@ -38,7 +37,6 @@ jobs:
         env:
           PLATFORM: ${{ matrix.platform }}
         run: |
-          set -xe
           python -VV
           python -m site
           python -m pip install --upgrade pip tox tox-gh-actions
