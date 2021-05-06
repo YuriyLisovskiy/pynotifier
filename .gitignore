@@ -105,3 +105,6 @@ venv.bak/
 
 # misc
 .idea/
+
+# test reports
+reports/

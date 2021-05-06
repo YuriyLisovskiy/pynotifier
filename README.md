@@ -33,6 +33,8 @@ Notification(
 
 ### Development
 
+[![Tests](https://github.com/YuriyLisovskiy/pynotifier/actions/workflows/tests.yml/badge.svg)](https://github.com/YuriyLisovskiy/pynotifier/actions/workflows/tests.yml)
+
 ```bash
 $ make
 ci               Lint and Test
