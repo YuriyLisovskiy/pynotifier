@@ -13,6 +13,7 @@ import subprocess
 
 class Notification:
 	"""
+	'app_name' - name of app sending notification (for linux only)
 	'title' - a title of notification.
 	'description' - more info about the notification.
 	'duration' - notification timeout in seconds.
@@ -20,7 +21,7 @@ class Notification:
 				possible values: 'low', 'normal', 'critical'.
 	'icon_path' - path to notification icon file.
 	"""
-	def __init__(self, title, description='', duration=5, urgency='low', icon_path=None):
+	def __init__(self, title, description='', duration=5, urgency='low', icon_path=None, app_name=None):
 		if title is None:
 			raise ValueError('title with None value is not allowed')
 
@@ -42,6 +43,7 @@ class Notification:
 		self.__duration = duration
 		self.__urgency = urgency
 		self.__icon_path = icon_path
+		self.__app_name = app_name	
 
 	def send(self):
 		# https://stackoverflow.com/questions/3951840/how-to-invoke-a-function-on-an-object-dynamically-by-name
@@ -62,6 +64,9 @@ class Notification:
 
 		if self.__icon_path is not None:
 			command += ['-i', self.__icon_path]
+
+		if self.__app_name is not None :
+			command += ['-a', self.__app_name]
 
 		subprocess.call(command)
 
