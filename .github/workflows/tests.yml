@@ -1,0 +1,40 @@
+name: Continuous Integration
+on:
+  # Triggers the workflow on push or pull request events
+  push:
+  pull_request:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+jobs:
+  lint:
+    name: "Lint"
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: "actions/checkout@v2"
+      - uses: "actions/setup-python@v2"
+        with:
+          python-version: "3.6"
+      - name: "Pre-commit linting"
+        run: |
+          set -xe
+          python -VV
+          python -m site
+          python -m pip install --upgrade pip tox
+          tox -e lint
+
+  test:
+    name: "Tests"
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: "actions/checkout@v2"
+      - uses: "actions/setup-python@v2"
+        with:
+          python-version: "3.6"
+          # python-version: "${{ matrix.python-version }}"
+      - name: "Run tests"
+        run: |
+          set -xe
+          python -VV
+          python -m site
+          python -m pip install --upgrade pip tox tox-gh-actions
+          tox
