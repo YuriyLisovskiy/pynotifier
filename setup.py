@@ -13,9 +13,11 @@ URL = 'https://github.com/YuriyLisovskiy/pynotifier'
 EMAIL = 'yuralisovskiy98@gmail.com'
 AUTHOR = 'Yuriy Lisovskiy'
 REQUIRES_PYTHON = '>=3.6.0'
-VERSION = (0, 3, 0)
 
 here = os.path.abspath(os.path.dirname(__file__))
+
+with open(os.path.join(here, 'VERSION')) as ver:
+	VERSION = tuple([int(x) for x in ver.read(-1).split('.')])
 
 with open(os.path.join(here, 'requirements.txt')) as txt:
 	REQUIRED = [module_name.rstrip('\n') for module_name in txt.readlines()]
