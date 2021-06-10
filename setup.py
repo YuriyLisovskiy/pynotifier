@@ -15,12 +15,10 @@ AUTHOR = 'Yuriy Lisovskiy'
 REQUIRES_PYTHON = '>=3.6.0'
 VERSION = (0, 3, 0)
 
-REQUIRED = [
-	"win10toast==0.9; platform_system=='Windows'",
-	"pync==2.0.3; platform_system=='Darwin'",
-]
-
 here = os.path.abspath(os.path.dirname(__file__))
+
+with open(os.path.join(here, 'requirements.txt')) as txt:
+	REQUIRED = [module_name.rstrip('\n') for module_name in txt.readlines()]
 
 try:
 	with io.open(os.path.join(here, 'README.md'), encoding='utf-8') as f:

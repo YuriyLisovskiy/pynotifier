@@ -65,7 +65,7 @@ class Notification:
 		if self.__icon_path is not None:
 			command += ['-i', self.__icon_path]
 
-		if self.__app_name is not None :
+		if self.__app_name is not None:
 			command += ['-a', self.__app_name]
 
 		subprocess.call(command)
