@@ -1,10 +1,11 @@
-# py-notifier
-# Copyright (c) 2018, 2021 Yuriy Lisovskiy
-#
-# Distributed under the MIT licence,
-# see the accompanying file LICENSE.
+"""
+py-notifier: Display desktop notifications on Windows, Linux and MacOS.
 
-__all__ = ['Notification']
+Copyright (c) 2018, 2021 Yuriy Lisovskiy
+
+Distributed under the MIT licence,
+see the accompanying file LICENSE.
+"""
 
 import platform
 import shutil
@@ -12,82 +13,107 @@ import subprocess
 
 
 class Notification:
-	"""
-	'app_name' - name of app sending notification (for linux only)
-	'title' - a title of notification.
-	'description' - more info about the notification.
-	'duration' - notification timeout in seconds.
-	'urgency' - notification urgency level (ignored under Windows);
-				possible values: 'low', 'normal', 'critical'.
-	'icon_path' - path to notification icon file.
-	"""
-	def __init__(self, title, description='', duration=5, urgency='low', icon_path=None, app_name=None):
-		if title is None:
-			raise ValueError('title with None value is not allowed')
+    """Display desktop notifications on Windows, Linux and MacOS."""
 
-		if title == '':
-			raise ValueError('title must not be empty')
+    def __init__(
+        self,
+        title,
+        description="",
+        duration=5,
+        urgency="low",
+        icon_path=None,
+        app_name=None,
+    ):
+        """
+        Construct with notification properties.
 
-		system = platform.system().lower()
+        'title' - a title of notification.
+        'description' - more info about the notification.
+        'duration' - notification timeout in seconds.
+        'urgency' - notification urgency level (ignored under Windows);
+                                possible values: 'low', 'normal', 'critical'.
+        'icon_path' - path to notification icon file.
+        'app_name' - name of app sending notification (Linux only).
+        """
+        if title is None:
+            raise ValueError("title with None value is not allowed")
 
-		platforms = ['windows', 'linux', 'darwin']
-		if system not in platforms:
-			raise SystemError('notifications are not supported for {} system'.format(system))
+        if title == "":
+            raise ValueError("title must not be empty")
 
-		if system == 'linux' and urgency not in ['low', 'normal', 'critical', None]:
-			raise ValueError('invalid urgency was given: {}'.format(urgency))
+        system = platform.system().lower()
 
-		self.system = system
-		self.__title = title
-		self.__description = description
-		self.__duration = duration
-		self.__urgency = urgency
-		self.__icon_path = icon_path
-		self.__app_name = app_name	
+        platforms = ["windows", "linux", "darwin"]
+        if system not in platforms:
+            raise SystemError(
+                "notifications are not supported for {} system".format(system)
+            )
 
-	def send(self):
-		# https://stackoverflow.com/questions/3951840/how-to-invoke-a-function-on-an-object-dynamically-by-name
-		getattr(self, f'send_{self.system}')()
+        if system == "linux" and urgency not in ["low", "normal", "critical", None]:
+            raise ValueError("invalid urgency was given: {}".format(urgency))
 
-	def send_linux(self):
-		"""Notify on linux with notify-send"""
-		if shutil.which('notify-send') is None:
-			raise SystemError('Please install libnotify-bin\n\tsudo apt-get install libnotify-bin')
+        self.system = system
+        self.__title = title
+        self.__description = description
+        self.__duration = duration
+        self.__urgency = urgency
+        self.__icon_path = icon_path
+        self.__app_name = app_name
 
-		command = [
-			'notify-send', '{}'.format(self.__title),
-			'{}'.format(self.__description),
-			'-t', '{}'.format(self.__duration * 1000)
-		]
-		if self.__urgency is not None:
-			command += ['-u', self.__urgency]
+    def send(self):
+        """Send the notification."""
+        # https://stackoverflow.com/questions/3951840/how-to-invoke-a-function-on-an-object-dynamically-by-name
+        getattr(self, f"send_{self.system}")()
 
-		if self.__icon_path is not None:
-			command += ['-i', self.__icon_path]
+    def send_linux(self):
+        """Notify on linux with notify-send."""
+        if shutil.which("notify-send") is None:
+            raise SystemError(
+                "Please install libnotify-bin\n\tsudo apt-get install libnotify-bin"
+            )
 
-		if self.__app_name is not None:
-			command += ['-a', self.__app_name]
+        command = [
+            "notify-send",
+            "{}".format(self.__title),
+            "{}".format(self.__description),
+            "-t",
+            "{}".format(self.__duration * 1000),
+        ]
+        if self.__urgency is not None:
+            command += ["-u", self.__urgency]
 
-		subprocess.call(command)
+        if self.__icon_path is not None:
+            command += ["-i", self.__icon_path]
 
-	def send_windows(self):
-		"""Notify on windows with win10toast"""
-		try:
-			import win10toast
-			win10toast.ToastNotifier().show_toast(
-				threaded=True,
-				title=self.__title,
-				msg=self.__description,
-				duration=self.__duration,
-				icon_path=self.__icon_path
-			)
-		except ImportError:
-			raise ImportError('notifications are not supported, can\'t import win10toast')
+        if self.__app_name is not None:
+            command += ["-a", self.__app_name]
 
-	def send_darwin(self):
-		"""Notify on macos with pync"""
-		try:
-			import pync
-			pync.notify(self.__description, title=self.__title, appIcon=self.__icon_path)
-		except ImportError:
-			raise ImportError('notifications are not supported, can\'t import pync')
+        subprocess.call(command)
+
+    def send_windows(self):
+        """Notify on windows with win10toast."""
+        try:
+            import win10toast
+
+            win10toast.ToastNotifier().show_toast(
+                threaded=True,
+                title=self.__title,
+                msg=self.__description,
+                duration=self.__duration,
+                icon_path=self.__icon_path,
+            )
+        except ImportError:
+            raise ImportError(
+                "notifications are not supported, can't import win10toast"
+            )
+
+    def send_darwin(self):
+        """Notify on macos with pync."""
+        try:
+            import pync
+
+            pync.notify(
+                self.__description, title=self.__title, appIcon=self.__icon_path
+            )
+        except ImportError:
+            raise ImportError("notifications are not supported, can't import pync")

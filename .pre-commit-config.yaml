@@ -1,0 +1,22 @@
+---
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.4.0
+    hooks:
+      - id: trailing-whitespace
+      - id: mixed-line-ending
+      - id: fix-byte-order-marker
+      - id: check-merge-conflict
+  - repo: https://gitlab.com/pycqa/flake8
+    rev: 3.9.0
+    hooks:
+      - id: flake8
+        additional_dependencies: [flake8-black,flake8-isort,flake8-docstrings,flake8-mypy,flake8-bandit,flake8-bugbear]
+  - repo: https://github.com/ambv/black
+    rev: 20.8b1
+    hooks:
+      - id: black
+  - repo: https://github.com/pre-commit/mirrors-isort
+    rev: v5.8.0
+    hooks:
+      - id: isort
