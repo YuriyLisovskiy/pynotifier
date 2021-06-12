@@ -113,7 +113,7 @@ class Notification:
             import pync
 
             pync.notify(
-                self.__description, title=self.__title, appIcon=self.__icon_path
+                message=self.__description, title=self.__title, appIcon=self.__icon_path
             )
         except ImportError:
             raise ImportError("notifications are not supported, can't import pync")

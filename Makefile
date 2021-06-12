@@ -17,7 +17,7 @@ venv: ${VENV}/python ## Creates the virtualenv and installs tox
 
 test: venv ## Run tests
 	@echo "+ $@"
-	$(VENV)/tox -e py
+	PLATFORM=$$(python -c 'import sys; print(sys.platform)') $(VENV)/tox -e py
 
 lint: venv ## Lint source
 	@echo "+ $@"
@@ -25,7 +25,7 @@ lint: venv ## Lint source
 
 ci: venv ## Lint and Test
 	@echo "+ $@"
-	$(VENV)/tox
+	PLATFORM=$$(python -c 'import sys; print(sys.platform)') $(VENV)/tox -e lint,py
 
 bump-version-major:
 	bump2version major

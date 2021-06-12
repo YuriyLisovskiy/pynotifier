@@ -1,5 +1,11 @@
 ## Desktop Notifications
 
+[![pypi version](https://img.shields.io/pypi/v/py-notifier.svg)](https://pypi.python.org/pypi/py-notifier)
+[![# of downloads](https://img.shields.io/pypi/dm/py-notifier.svg)](https://pypi.python.org/pypi/py-notifier)
+[![Supported Python versions](https://img.shields.io/pypi/pyversions/py-notifier.svg?logo=python&logoColor=FFE873)](https://pypi.org/project/py-notifier)
+[![License](https://img.shields.io/github/license/YuriyLisovskiy/pynotifier.svg)](LICENSE)
+[![Github Actions](https://github.com/YuriyLisovskiy/pynotifier/actions/workflows/tests.yml/badge.svg)](https://github.com/YuriyLisovskiy/pynotifier/actions/workflows/tests.yml)
+
 Simple Python3 module for displaying desktop notifications on Windows, Linux and MacOS.
 
 ### Installation
@@ -32,6 +38,8 @@ Notification(
 ```
 
 ### Development
+
+[![Tests](https://github.com/YuriyLisovskiy/pynotifier/actions/workflows/tests.yml/badge.svg)](https://github.com/YuriyLisovskiy/pynotifier/actions/workflows/tests.yml)
 
 ```bash
 $ make
