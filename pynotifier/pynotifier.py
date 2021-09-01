@@ -88,7 +88,7 @@ class Notification:
         if self.__app_name is not None:
             command += ["-a", self.__app_name]
 
-        subprocess.call(command)
+        subprocess.Popen(command, shell=False)
 
     def send_windows(self):
         """Notify on windows with win10toast."""
