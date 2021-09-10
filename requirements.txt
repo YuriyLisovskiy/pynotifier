@@ -1,2 +1,2 @@
-wintoaster==0.1; platform_system=='Windows'
+WinToaster==0.1; platform_system=='Windows'
 pync==2.0.3; platform_system=='Darwin'
