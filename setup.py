@@ -16,7 +16,7 @@ REQUIRES_PYTHON = ">=3.6.0"
 VERSION = (0, 3, 0)
 
 REQUIRED = [
-    "win10toast==0.9; platform_system=='Windows'",
+    "WinToaster==0.1; platform_system=='Windows'",
     "pync==2.0.3; platform_system=='Darwin'",
 ]
 
