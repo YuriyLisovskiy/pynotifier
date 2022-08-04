@@ -93,15 +93,15 @@ class Notification:
     def send_windows(self):
         """Notify on windows with win10toast."""
         try:
-            import win10toast
+            import wintoaster
 
-            win10toast.ToastNotifier().show_toast(
+            wintoaster.create_toast(
                 threaded=True,
                 title=self.__title,
                 msg=self.__description,
                 duration=self.__duration,
                 icon_path=self.__icon_path,
-            )
+            ).display()
         except ImportError:
             raise ImportError(
                 "notifications are not supported, can't import win10toast"
