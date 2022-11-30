@@ -33,6 +33,8 @@ sounds = set()
 for sounds_location in _sounds_locations:
 	sounds = sounds.union(_load_sounds(sounds_location))
 
+sounds = tuple(sounds)
+
 
 class DarwinBackend(NotificationBackend):
 	"""
