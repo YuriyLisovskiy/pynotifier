@@ -37,16 +37,6 @@ notification = Notification(title='Hello', message='World')
 c.notify_all(notification)
 ```
 
-### Development
-```bash
-$ make
-ci               Lint and Test
-clean            Remove Python file artifacts and virtualenv
-lint             Lint source
-test             Run tests
-venv             Creates the virtualenv and installs tox
-```
-
 ### License
 The project is licensed under the terms of the [MIT License](https://opensource.org/licenses/mit),
 see the [LICENSE](LICENSE) file for more information.

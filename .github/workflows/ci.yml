@@ -5,20 +5,6 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 jobs:
-  lint:
-    name: "Lint"
-    runs-on: "ubuntu-latest"
-    steps:
-      - uses: "actions/checkout@v2"
-      - uses: "actions/setup-python@v2"
-        with:
-          python-version: "3.6"
-      - name: "Pre-commit linting"
-        run: |
-          python -VV
-          python -m site
-          python -m pip install --upgrade pip tox
-          tox -e lint
   test:
     name: "Tests ${{ matrix.python-version }} on ${{ matrix.platform }}"
     runs-on: ${{ matrix.platform }}
@@ -31,19 +17,31 @@ jobs:
       - uses: "actions/setup-python@v2"
         with:
           python-version: "${{ matrix.python-version }}"
-      - name: "Run tests with Python ${{ matrix.python-version }} on ${{ matrix.platform }}"
-        env:
-          PLATFORM: ${{ matrix.platform }}
+      - name: "Install dependencies"
         run: |
-          python -VV
-          python -m site
-          python -m pip install --upgrade pip tox tox-gh-actions
-          tox
-      - name: Upload test results
-        uses: actions/upload-artifact@v2
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: "Run tests with Python ${{ matrix.python-version }} on ${{ matrix.platform }}"
+        if: github.ref != 'refs/heads/dev'
+        run: |
+          python tests/main.py
+      - name: "Install dev dependencies"
+        if: github.ref == 'refs/heads/dev'
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.dev.txt ]; then pip install -r requirements.dev.txt; fi
+      - name: "Run tests with Python ${{ matrix.python-version }} on ${{ matrix.platform }} with coverage report"
+        if: github.ref == 'refs/heads/dev'
+        run: |
+          coverage run tests/main.py
+          coverage xml
+      - name: "Upload coverage to Codecov"
+        if: github.ref == 'refs/heads/dev'
+        uses: codecov/codecov-action@v1
         with:
-          name: test-results-${{ matrix.python-version }}-${{ matrix.platform }}
-          path: |
-            reports/junit.xml
-            reports/cobertura.xml
-        if: ${{ always() }}
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage.xml
+          flags: backend
+          name: backend
+          fail_ci_if_error: true
+          verbose: true
