@@ -41,7 +41,8 @@ jobs:
           pip install -r requirements.dev.txt
       - name: "Run tests with coverage report"
         run: |
-          coverage run tests/main.py
+          cd tests/
+          coverage run main.py
           coverage xml
       - name: "Upload coverage to Codecov"
         uses: codecov/codecov-action@v1

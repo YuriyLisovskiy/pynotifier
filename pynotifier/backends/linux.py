@@ -1,0 +1,62 @@
+import shutil
+import subprocess
+
+from .backend import NotificationBackend
+from ..notification import Notification
+from ..utils import assert_system
+
+assert_system('linux')
+
+
+class LinuxBackend(NotificationBackend):
+	"""
+	Desktop notification backend for linux.
+
+	Current implementation uses libnotify-bin tool to send notifications.
+	"""
+
+	IDENTIFIER = "pynotifier.backends.linux"
+
+	def notify(self, notification: Notification):
+		"""
+		Send notification on linux with notify-send.
+
+		'title' - a title of notification
+		'message' - more info about the notification
+		'duration' - еhe duration, in seconds, for the notification to appear on screen
+					(Ubuntu's Notify OSD and GNOME Shell both ignore this parameter.)
+		'urgency' - the urgency level (low, normal, critical)
+		'icon_path' - an icon filename or stock icon to display
+		'app_name' - the app name for the notification
+					(Works on Arch Linux)
+		"""
+		if shutil.which("notify-send") is None:
+			raise SystemError(
+				"""Please install libnotify-bin.
+For Ubuntu run the following command in terminal:
+	sudo apt-get install libnotify-bin"""
+			)
+
+		command = [
+			"notify-send",
+			"{}".format(notification.title),
+			"{}".format(notification.message),
+			"-t",
+			"{}".format(int(notification.config.get('duration', '5')) * 1000),
+		]
+		urgency = notification.config.get('urgency', None)
+		if urgency is not None:
+			command += ["-u", urgency]
+
+		icon_path = notification.config.get('icon_path', None)
+		if icon_path is not None:
+			command += ["-i", icon_path]
+
+		app_name = notification.config.get('app_name', None)
+		if app_name is not None:
+			command += ["-a", str(app_name)]
+
+		subprocess.Popen(command, shell=False)
+
+
+Backend = LinuxBackend
