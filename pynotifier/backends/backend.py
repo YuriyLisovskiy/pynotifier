@@ -26,7 +26,8 @@ class NotificationBackend:
 	@property
 	def identifier(self):
 		"""
-		Backend identifier, usually it has package notation, i.e.
-		pynotifier.backends.my_backend
+		Backend identifier.
+
+		Usually it has package notation, i.e. pynotifier.backends.my_backend.
 		"""
 		return self.IDENTIFIER
