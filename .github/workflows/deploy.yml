@@ -1,7 +1,8 @@
 name: Deploy
 on:
   push:
-    - master
+    branches:
+      - master
 jobs:
   deploy:
     name: "Deploy to PyPi"
