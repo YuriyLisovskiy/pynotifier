@@ -9,25 +9,17 @@ from .notification import Notification
 
 
 class NotificationClient:
-	"""
-	Holds backends to notify and sends the notification using them.
-	"""
+	"""Holds backends to notify and sends the notification using them."""
 
 	def __init__(self):
-		"""
-		Initializes an empty backends list.
-		"""
+		"""Initializes an empty backends list."""
 		self._backends = []
 
 	def register_backend(self, backend: NotificationBackend):
-		"""
-		Appends the provided backend.
-		"""
+		"""Appends the provided backend."""
 		self._backends.append(backend)
 
 	def notify_all(self, notification: Notification):
-		"""
-		Sends the notification to all backends.
-		"""
+		"""Sends the notification to all backends."""
 		for backend in self._backends:
 			backend.notify(notification)
