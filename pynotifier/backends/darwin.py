@@ -1,19 +1,17 @@
-# Copyright (c) 2022 Yuriy Lisovskiy
-#
-# Distributed under the MIT licence, see the accompanying file LICENSE.
+"""
+Copyright (c) 2022 Yuriy Lisovskiy
+
+Distributed under the MIT licence, see the accompanying file LICENSE.
+"""
 
 import subprocess
-import platform
 from os import walk
 
 from .backend import NotificationBackend
 from ..notification import Notification
+from ..utils import assert_system
 
-target_system = platform.system().lower()
-if target_system != 'darwin':
-	raise SystemError(f'darwin notification backend is not supported on {target_system}')
-
-del target_system
+assert_system('darwin')
 
 
 def _load_sounds(p: str):
@@ -24,10 +22,22 @@ def _load_sounds(p: str):
 		return set()
 
 
-sounds = _load_sounds('/System/Library/Sounds').union(_load_sounds('~/Library/Sounds'))
+_sounds_locations = [
+	'/System/Library/Sounds',
+	'~/Library/Sounds'
+]
+
+sounds = set()
+for sounds_location in _sounds_locations:
+	sounds = sounds.union(_load_sounds(sounds_location))
 
 
 class DarwinBackend(NotificationBackend):
+	"""
+	Desktop notification backend for macOS.
+
+	Current implementation uses AppleScript to send notifications.
+	"""
 
 	IDENTIFIER = "pynotifier.backends.darwin"
 

@@ -1,5 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+"""
+Send notifications using backends.
+
+Copyright (c) 2018, 2021-2022 Yuriy Lisovskiy
+
+Distributed under the MIT licence, see the accompanying file LICENSE.
+"""
 
 import io
 import os

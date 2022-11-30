@@ -1,6 +1,8 @@
-# Copyright (c) 2022 Yuriy Lisovskiy
-#
-# Distributed under the MIT licence, see the accompanying file LICENSE.
+"""
+Copyright (c) 2022 Yuriy Lisovskiy
+
+Distributed under the MIT licence, see the accompanying file LICENSE.
+"""
 
 from .backend import NotificationBackend
 from .darwin import DarwinBackend

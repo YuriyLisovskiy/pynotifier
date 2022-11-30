@@ -1,6 +1,9 @@
-# Copyright (c) 2018, 2021-2022 Yuriy Lisovskiy
-#
-# Distributed under the MIT licence, see the accompanying file LICENSE.
+"""
+Copyright (c) 2018, 2021-2022 Yuriy Lisovskiy
+
+Distributed under the MIT licence, see the accompanying file LICENSE.
+"""
+
 
 class Notification:
     """
@@ -23,12 +26,21 @@ class Notification:
 
     @property
     def config(self):
+        """
+        Notification properties.
+        """
         return self._config
 
     @property
     def title(self):
+        """
+        Notification title.
+        """
         return self._config.get('title')
 
     @property
     def message(self):
+        """
+        Notification description.
+        """
         return self._config.get('message', '')
