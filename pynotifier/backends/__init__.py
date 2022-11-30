@@ -1,14 +1,9 @@
-from .backend import (
-	NotificationBackend,
+# Copyright (c) 2022 Yuriy Lisovskiy
+#
+# Distributed under the MIT licence, see the accompanying file LICENSE.
 
-	register_backend,
-	register_system_backend,
-	notify_all
-)
+from .backend import NotificationBackend
+from .darwin import DarwinBackend
+from .desktop import DesktopBackend
 
-__all__ = [
-	"NotificationBackend",
-	"register_backend",
-	"register_system_backend",
-	"notify_all"
-]
+__all__ = ["NotificationBackend", "DarwinBackend", "DesktopBackend"]
