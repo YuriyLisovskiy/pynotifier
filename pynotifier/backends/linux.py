@@ -30,15 +30,16 @@ class LinuxBackend(NotificationBackend):
 		'app_name' - the app name for the notification
 					(Works on Arch Linux)
 		"""
-		if shutil.which("notify-send") is None:
+		notify_send = shutil.which("notify-send")
+		if notify_send is None:
 			raise SystemError(
 				"""Please install libnotify-bin.
 For Ubuntu run the following command in terminal:
-	sudo apt-get install libnotify-bin"""
+	apt-get install libnotify-bin"""
 			)
 
 		command = [
-			"notify-send",
+			notify_send,
 			"{}".format(notification.title),
 			"{}".format(notification.message),
 			"-t",
