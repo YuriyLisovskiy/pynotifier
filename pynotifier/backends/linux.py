@@ -1,3 +1,11 @@
+"""
+This file is a part of py-notifier project.
+
+Copyright (c) 2022 Yuriy Lisovskiy
+
+Distributed under the MIT licence, see the accompanying file LICENSE.
+"""
+
 import shutil
 import subprocess
 
