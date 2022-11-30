@@ -1,4 +1,3 @@
-"""Display desktop notifications on Windows, Linux and MacOS."""
-from .pynotifier import Notification
+from .notification import Notification
 
 __all__ = ["Notification"]

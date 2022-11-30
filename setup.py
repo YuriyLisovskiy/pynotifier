@@ -13,12 +13,12 @@ URL = "https://github.com/YuriyLisovskiy/pynotifier"
 EMAIL = "yuralisovskiy98@gmail.com"
 AUTHOR = "Yuriy Lisovskiy"
 REQUIRES_PYTHON = ">=3.6.0"
-VERSION = (0, 3, 0)
+# VERSION = (0, 3, 0)
 
-REQUIRED = [
-    "WinToaster==0.1; platform_system=='Windows'",
-    "pync==2.0.3; platform_system=='Darwin'",
-]
+# REQUIRED = [
+#     "WinToaster==0.1; platform_system=='Windows'",
+#     "pync==2.0.3; platform_system=='Darwin'",
+# ]
 
 here = os.path.abspath(os.path.dirname(__file__))
 
