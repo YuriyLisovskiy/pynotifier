@@ -1,6 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""Display desktop notifications on Windows, Linux and MacOS."""
+"""
+Send notifications using backends.
+
+Copyright (c) 2018, 2021-2022 Yuriy Lisovskiy
+
+Distributed under the MIT licence, see the accompanying file LICENSE.
+"""
 
 import io
 import os
@@ -8,17 +14,11 @@ import os
 from setuptools import find_packages, setup
 
 NAME = "py-notifier"
-DESCRIPTION = "Cross-platform desktop push-notifications."
+DESCRIPTION = "Python push-notifications."
 URL = "https://github.com/YuriyLisovskiy/pynotifier"
 EMAIL = "yuralisovskiy98@gmail.com"
 AUTHOR = "Yuriy Lisovskiy"
 REQUIRES_PYTHON = ">=3.6.0"
-# VERSION = (0, 3, 0)
-
-# REQUIRED = [
-#     "WinToaster==0.1; platform_system=='Windows'",
-#     "pync==2.0.3; platform_system=='Darwin'",
-# ]
 
 here = os.path.abspath(os.path.dirname(__file__))
 
@@ -50,13 +50,22 @@ setup(
     license="MIT",
     classifiers=[
         # Full list: https://pypi.org/classifiers
+        "Intended Audience :: Information Technology",
+        "Intended Audience :: Developers",
+        "Operating System :: OS Independent",
+        "Environment :: MacOS X",
+        "Topic :: Software Development",
+        "Topic :: Software Development :: Libraries",
+        "Topic :: Software Development :: Libraries :: Python Modules",
+        "Topic :: Software Development :: Libraries :: Application Frameworks",
+        "Typing :: Typed",
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.6",
-        "Environment :: MacOS X",
-        "Operating System :: MacOS",
-        "Operating System :: POSIX :: Linux",
-        "Operating System :: Microsoft :: Windows :: Windows 10",
+        "Programming Language :: Python :: 3 :: Only",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
     ],
 )

@@ -1,14 +1,13 @@
-from .backend import (
-	NotificationBackend,
+"""
+This file is a part of py-notifier project.
 
-	register_backend,
-	register_system_backend,
-	notify_all
-)
+Copyright (c) 2022 Yuriy Lisovskiy
 
-__all__ = [
-	"NotificationBackend",
-	"register_backend",
-	"register_system_backend",
-	"notify_all"
-]
+Distributed under the MIT licence, see the accompanying file LICENSE.
+"""
+
+from .backend import NotificationBackend
+from .darwin import DarwinBackend
+from .desktop import DesktopBackend
+
+__all__ = ["NotificationBackend", "DarwinBackend", "DesktopBackend"]

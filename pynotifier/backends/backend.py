@@ -1,27 +1,33 @@
-import platform
+"""
+This file is a part of py-notifier project.
+
+Copyright (c) 2022 Yuriy Lisovskiy
+
+Distributed under the MIT licence, see the accompanying file LICENSE.
+"""
+
+from ..notification import Notification
 
 
 class NotificationBackend:
+	"""
+	Base class for notification backends.
 
-	def __init__(self, name: str):
-		self._name = name
+	Child classes can provide some pre- or post-processing
+	of the notification it sends.
+	"""
 
-	def notify(self, title: str, message: str, *args, **kwargs):
-		raise NotImplemented
+	IDENTIFIER = None
+
+	def notify(self, notification: Notification):
+		"""Send the notification using config from Notification object."""
+		raise NotImplementedError
 
 	@property
-	def name(self):
-		return self._name
+	def identifier(self):
+		"""
+		Backend identifier.
 
-
-_backends = dict()
-
-
-def register_backend(name: str, nb: NotificationBackend):
-	if name not in _backends:
-		_backends[name] = nb
-
-
-def notify_all(title: str, message: str, *args, **kwargs):
-	for backend in _backends:
-		_backends[backend].notify(title=title, message=message, *args, **kwargs)
+		Usually it has package notation, i.e. pynotifier.backends.my_backend.
+		"""
+		return self.IDENTIFIER
