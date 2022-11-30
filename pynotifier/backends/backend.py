@@ -20,13 +20,13 @@ class NotificationBackend:
 	IDENTIFIER = None
 
 	def notify(self, notification: Notification):
-		"""Sends the notification using config from Notification object."""
+		"""Send the notification using config from Notification object."""
 		raise NotImplementedError
 
 	@property
 	def identifier(self):
 		"""
-		Returns backend identifier, usually it has package notation, i.e.
+		Backend identifier, usually it has package notation, i.e.
 		pynotifier.backends.my_backend
 		"""
 		return self.IDENTIFIER

@@ -45,7 +45,7 @@ class DarwinBackend(NotificationBackend):
 
 	def notify(self, notification: Notification):
 		"""
-		Sends macOS native notification using AppleScript.
+		Send macOS native notification using AppleScript.
 
 		'title' - a title of notification.
 		'message' - more info about the notification.

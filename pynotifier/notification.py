@@ -8,9 +8,7 @@ Distributed under the MIT licence, see the accompanying file LICENSE.
 
 
 class Notification:
-    """
-    Holds notification properties.
-    """
+    """Holds notification properties."""
 
     def __init__(self, *args, **kwargs):
         """
@@ -28,21 +26,15 @@ class Notification:
 
     @property
     def config(self):
-        """
-        Notification properties.
-        """
+        """Notification properties."""
         return self._config
 
     @property
     def title(self):
-        """
-        Notification title.
-        """
+        """Notification title."""
         return self._config.get('title')
 
     @property
     def message(self):
-        """
-        Notification description.
-        """
+        """Notification description."""
         return self._config.get('message', '')

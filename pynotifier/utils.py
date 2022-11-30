@@ -11,7 +11,7 @@ import platform
 
 def assert_system(target: str):
 	"""
-	Checks if current OS matches target.
+	Check if current OS matches target.
 
 	Raises SystemError if OS does not match.
 	"""
