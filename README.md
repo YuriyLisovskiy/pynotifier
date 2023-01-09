@@ -26,7 +26,7 @@ sudo apt-get install libnotify-bin
 ### Example
 ```python
 from pynotifier import NotificationClient, Notification
-from pynotifier.backends import DesktopBackend
+from pynotifier.backends.desktop import DesktopBackend
 
 c = NotificationClient()
 

@@ -31,7 +31,7 @@ class LinuxBackend(NotificationBackend):
 
 		'title' - a title of notification
 		'message' - more info about the notification
-		'duration' - еhe duration, in seconds, for the notification to appear on screen
+		'duration' - the duration, in seconds, for the notification to appear on screen
 					(Ubuntu's Notify OSD and GNOME Shell both ignore this parameter.)
 		'urgency' - the urgency level (low, normal, critical)
 		'icon_path' - an icon filename or stock icon to display
