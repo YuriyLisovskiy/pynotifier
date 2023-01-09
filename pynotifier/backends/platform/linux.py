@@ -1,17 +1,17 @@
 """
 This file is a part of py-notifier project.
 
-Copyright (c) 2022 Yuriy Lisovskiy
+Copyright (c) 2022-2023 Yuriy Lisovskiy
 
 Distributed under the MIT licence, see the accompanying file LICENSE.
 """
-
 import shutil
 import subprocess
 
-from .backend import NotificationBackend
-from ..notification import Notification
-from ..utils import assert_system
+from pynotifier.notification import Notification
+from pynotifier.utils import assert_system
+
+from ..backend import NotificationBackend
 
 assert_system('linux')
 

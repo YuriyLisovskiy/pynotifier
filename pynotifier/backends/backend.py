@@ -6,7 +6,7 @@ Copyright (c) 2022 Yuriy Lisovskiy
 Distributed under the MIT licence, see the accompanying file LICENSE.
 """
 
-from ..notification import Notification
+from pynotifier.notification import Notification
 
 
 class NotificationBackend:
