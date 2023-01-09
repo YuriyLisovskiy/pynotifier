@@ -12,10 +12,21 @@ jobs:
   test:
     name: "Tests ${{ matrix.python-version }} on ${{ matrix.platform }}"
     runs-on: ${{ matrix.platform }}
+    if: matrix.platform != 'ubuntu-22.04' || matrix.python-version != '3.6'
     strategy:
       matrix:
-        platform: [ubuntu-latest, macos-latest, windows-latest]
-        python-version: [3.7, 3.8, 3.9]
+        platform:
+          - ubuntu-20.04
+          - ubuntu-22.04
+          - macos-11
+          - macos-12
+          - windows-2019
+          - windows-2022
+        python-version:
+          - 3.6
+          - 3.7
+          - 3.8
+          - 3.9
     steps:
       - uses: "actions/checkout@v2"
       - uses: "actions/setup-python@v2"
