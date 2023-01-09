@@ -5,7 +5,6 @@ Copyright (c) 2022 Yuriy Lisovskiy
 
 Distributed under the MIT licence, see the accompanying file LICENSE.
 """
-
 from pynotifier.notification import Notification
 
 
