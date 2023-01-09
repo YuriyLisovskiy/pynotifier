@@ -12,7 +12,7 @@ jobs:
   test:
     name: "Tests ${{ matrix.python-version }} on ${{ matrix.platform }}"
     runs-on: ${{ matrix.platform }}
-    if: matrix.platform != 'ubuntu-22.04' || matrix.python-version != '3.6'
+    if: ${{ matrix.platform }} != 'ubuntu-22.04' || ${{ matrix.python-version }} != '3.6'
     strategy:
       matrix:
         platform:
