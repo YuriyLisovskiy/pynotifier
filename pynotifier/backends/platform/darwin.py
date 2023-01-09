@@ -43,7 +43,7 @@ class DarwinBackend(NotificationBackend):
 	Current implementation uses AppleScript to send notifications.
 	"""
 
-	IDENTIFIER = "pynotifier.backends.darwin"
+	IDENTIFIER = "pynotifier.backends.platform.darwin"
 
 	def notify(self, notification: Notification):
 		"""

@@ -25,7 +25,7 @@ class WindowsBackend(NotificationBackend):
 	Current implementation uses 3rd party module - "WinToaster" to send notifications.
 	"""
 
-	IDENTIFIER = "pynotifier.backends.windows"
+	IDENTIFIER = "pynotifier.backends.platform.windows"
 
 	def notify(self, notification: Notification):
 		"""

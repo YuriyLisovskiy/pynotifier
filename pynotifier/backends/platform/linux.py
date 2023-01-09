@@ -23,7 +23,7 @@ class LinuxBackend(NotificationBackend):
 	Current implementation uses libnotify-bin tool to send notifications.
 	"""
 
-	IDENTIFIER = "pynotifier.backends.linux"
+	IDENTIFIER = "pynotifier.backends.platform.linux"
 
 	def notify(self, notification: Notification):
 		"""
