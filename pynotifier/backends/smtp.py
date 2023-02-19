@@ -25,7 +25,7 @@ class DSMTP_SSL(smtplib.SMTP_SSL):
 
 
 # TODO: add attachments to email from notification.config!
-class SMTPBackend(NotificationBackend):
+class Backend(NotificationBackend):
 	"""SMTP notification backend.
 	mime_type: [str], default: "plain"
 

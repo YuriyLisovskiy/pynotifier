@@ -7,5 +7,6 @@ Distributed under the MIT licence, see the accompanying file LICENSE.
 """
 
 from pynotifier.backends.backend import NotificationBackend
+from pynotifier.backends.smtp import Backend as SMTPBackend
 
-__all__ = ["NotificationBackend"]
+__all__ = ['NotificationBackend', 'SMTPBackend']
