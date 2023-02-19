@@ -17,6 +17,7 @@ jobs:
           git config --global user.email 'deploy-trigger-automation@github.com'
       - name: "Push new version to dev"
         run: |
+          git branch
           git checkout dev
           echo ${{ steps.vars.outputs.tag }} > VERSION
           git add VERSION
