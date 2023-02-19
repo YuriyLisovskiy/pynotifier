@@ -1,4 +1,4 @@
-## Desktop Notifications
+## Python Notifications
 
 [![Github Actions - CI](https://github.com/YuriyLisovskiy/pynotifier/actions/workflows/ci.yml/badge.svg)](https://github.com/YuriyLisovskiy/pynotifier/actions/workflows/ci.yml)
 [![Github Actions - Deploy](https://github.com/YuriyLisovskiy/pynotifier/actions/workflows/deploy.yml/badge.svg)](https://github.com/YuriyLisovskiy/pynotifier/actions/workflows/deploy.yml)
@@ -9,12 +9,14 @@
 
 Python3 module for sending notifications.
 
-### Installation
-```bash
-$ pip install py-notifier
-```
+The list of available backends:
+* Platform (`pynotifier.backends.platform.Backend`):
+  * macOS
+  * Linux
+  * Windows
+* Email (`pynotifier.backends.smtp.Backend`)
 
-### Requirements
+### Platform notifications requirements
 #### Windows:
 [`WinToaster`](https://github.com/MaliciousFiles/WinToaster) - Python module
 #### Linux:
@@ -23,17 +25,26 @@ $ pip install py-notifier
 sudo apt-get install libnotify-bin
 ```
 
+### Installation
+```bash
+pip install py-notifier
+```
+
 ### Example
 ```python
 from pynotifier import NotificationClient, Notification
-from pynotifier.backends.desktop import DesktopBackend
+from pynotifier.backends import platform, smtp
 
 c = NotificationClient()
 
-backend = DesktopBackend()
-c.register_backend(backend)
+c.register_backend(platform.Backend())
+c.register_backend(smtp.Backend(server=smtp.DSMTP_SSL('smtp.gmail.com'),
+                                email='sender@email.com',
+                                password='super_password'))
 
-notification = Notification(title='Hello', message='World')
+notification = Notification(title='Hello',
+                            message='World',
+                            emails=['receiver_1@email.com', 'receiver_2@email.com'])
 c.notify_all(notification)
 ```
 
