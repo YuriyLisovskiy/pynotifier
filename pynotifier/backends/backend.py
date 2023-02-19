@@ -21,7 +21,7 @@ class NotificationBackend:
 
 	def notify(self, notification: Notification):
 		"""Send the notification using config from Notification object."""
-		raise NotImplementedError
+		raise NotImplemented
 
 	@property
 	def identifier(self):
@@ -30,4 +30,7 @@ class NotificationBackend:
 
 		Usually it has package notation, i.e. pynotifier.backends.my_backend.
 		"""
+		if self.IDENTIFIER is None:
+			raise NotImplemented
+
 		return self.IDENTIFIER
