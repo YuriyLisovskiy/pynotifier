@@ -1,31 +1,6 @@
-VENV = .venv/bin
-
 .DEFAULT_GOAL := help
 
-.PHONY: clean help
-clean: ## Remove Python file artifacts and virtualenv
-	@echo "+ $@"
-	@rm -rf .venv
-
-${VENV}/python:
-	@echo "+ $@"
-	python -m venv .venv
-
-venv: ${VENV}/python ## Creates the virtualenv and installs tox
-	@echo "+ $@"
-	$(VENV)/pip install tox
-
-test: venv ## Run tests
-	@echo "+ $@"
-	PLATFORM=$$(python -c 'import sys; print(sys.platform)') $(VENV)/tox -e py
-
-lint: venv ## Lint source
-	@echo "+ $@"
-	$(VENV)/tox -e lint
-
-ci: venv ## Lint and Test
-	@echo "+ $@"
-	PLATFORM=$$(python -c 'import sys; print(sys.platform)') $(VENV)/tox -e lint,py
+.PHONY: bump-version-major bump-version-minor bump-version-patch help
 
 bump-version-major:
 	bump2version major
