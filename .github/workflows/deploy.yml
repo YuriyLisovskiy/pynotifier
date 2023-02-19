@@ -15,7 +15,7 @@ jobs:
           git push --tags
       - uses: actions/setup-python@v2
         with:
-          python-version: "3.6"
+          python-version: "3.8"
       - name: "Deploy using twine"
         env:
           TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
