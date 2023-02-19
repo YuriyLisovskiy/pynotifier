@@ -1,7 +1,7 @@
 ## Python Notifications
 
-[![Github Actions - CI](https://github.com/YuriyLisovskiy/pynotifier/actions/workflows/ci.yml/badge.svg)](https://github.com/YuriyLisovskiy/pynotifier/actions/workflows/ci.yml)
-[![Github Actions - Deploy](https://github.com/YuriyLisovskiy/pynotifier/actions/workflows/deploy.yml/badge.svg)](https://github.com/YuriyLisovskiy/pynotifier/actions/workflows/deploy.yml)
+[![CI](https://github.com/YuriyLisovskiy/pynotifier/actions/workflows/ci.yml/badge.svg)](https://github.com/YuriyLisovskiy/pynotifier/actions/workflows/ci.yml)
+[![Deploy](https://github.com/YuriyLisovskiy/pynotifier/actions/workflows/deploy.yml/badge.svg?branch=master)](https://github.com/YuriyLisovskiy/pynotifier/actions/workflows/deploy.yml)
 [![PyPi Version](https://img.shields.io/pypi/v/py-notifier.svg)](https://pypi.python.org/pypi/py-notifier)
 [![# of Downloads](https://img.shields.io/pypi/dm/py-notifier.svg)](https://pypi.python.org/pypi/py-notifier)
 [![Supported Python Versions](https://img.shields.io/pypi/pyversions/py-notifier.svg?logo=python&logoColor=FFE873)](https://pypi.org/project/py-notifier)
