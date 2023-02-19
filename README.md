@@ -1,4 +1,4 @@
-## Python Notifications
+# Python Notifications
 
 [![CI](https://github.com/YuriyLisovskiy/pynotifier/actions/workflows/ci.yml/badge.svg)](https://github.com/YuriyLisovskiy/pynotifier/actions/workflows/ci.yml)
 [![Deploy](https://github.com/YuriyLisovskiy/pynotifier/actions/workflows/deploy.yml/badge.svg?branch=master)](https://github.com/YuriyLisovskiy/pynotifier/actions/workflows/deploy.yml)
@@ -16,21 +16,22 @@ The list of available backends:
   * Windows
 * Email (`pynotifier.backends.smtp.Backend`)
 
-### Platform notifications requirements
-#### Windows:
+## Platform notifications requirements
+### Windows:
 [`WinToaster`](https://github.com/MaliciousFiles/WinToaster) - Python module
-#### Linux:
+### Linux:
 `libnotify-bin` CLI tool (manual installation is required). For Ubuntu run:
 ```bash
 sudo apt-get install libnotify-bin
 ```
 
-### Installation
+## Installation
+Install using pip:
 ```bash
 pip install py-notifier
 ```
 
-### Example
+## Example
 ```python
 import ssl
 import smtplib
@@ -65,6 +66,6 @@ notification = Notification(title='Hello', message='World', smtp=smtp_config)
 c.notify_all(notification)
 ```
 
-### License
+## License
 The project is licensed under the terms of the [MIT License](https://opensource.org/licenses/mit),
 see the [LICENSE](LICENSE) file for more information.
