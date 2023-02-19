@@ -24,6 +24,7 @@ class DSMTP_SSL(smtplib.SMTP_SSL):
 		super().__init__(host, self.SSL_PORT, context=ssl.create_default_context(), *args, **kwargs)
 
 
+# TODO: add attachments to email from notification.config!
 class SMTPBackend(NotificationBackend):
 	"""SMTP notification backend.
 	mime_type: [str], default: "plain"
