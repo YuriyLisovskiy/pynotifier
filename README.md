@@ -11,19 +11,22 @@ Python3 module for sending notifications.
 
 The list of available backends:
 * Platform (`pynotifier.backends.platform.Backend`):
-  * macOS
+  * Android (Termux)
   * Linux
+  * macOS
   * Windows
 * Email (`pynotifier.backends.smtp.Backend`)
 
 ## Platform notifications requirements
-### Windows:
-[`WinToaster`](https://github.com/MaliciousFiles/WinToaster) - Python module
+### Android:
+[`termux-api`](https://f-droid.org/en/packages/com.termux.api/) - Android application for Termux
 ### Linux:
 `libnotify-bin` CLI tool (manual installation is required). For Ubuntu run:
 ```bash
 sudo apt-get install libnotify-bin
 ```
+### Windows:
+[`WinToaster`](https://github.com/MaliciousFiles/WinToaster) - Python module
 
 ## Installation
 Install using pip:
